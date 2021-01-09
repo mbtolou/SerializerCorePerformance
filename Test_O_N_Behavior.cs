@@ -88,14 +88,14 @@ namespace SerializerCore
         {
             string typeName = formatter.GetType().Name;
             typeName = typeName.Substring(0, typeName.Length - 2); // omit generic arg `1 of typename
-            Console.WriteLine($"{typeName}\t{NBooks}\t{times.averageS:F4}\t{times.serializedSize}\t{formatter.FileVersion}\t{GetNetCoreVersion() ?? System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}\t{GetSerializerDetails(formatter)}");
+            Console.WriteLine($"{typeName.PadRight(50, ' ')},{NBooks},{times.averageS:F4},{times.serializedSize},{formatter.FileVersion.ToString().PadRight(15, ' ')},{GetNetCoreVersion() ?? System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription},{GetSerializerDetails(formatter)}");
         }
 
         private void Print(ISerializeDeserializeTester formatter, int NBooks, (double firstS, double averageS, long serializedSize) timesSerialize, (double firstS, double averageS, long dataSize) timesDeserialize)
         {
             string typeName = formatter.GetType().Name;
             typeName = typeName.Substring(0, typeName.Length - 2); // omit generic arg `1 of typename
-            Console.WriteLine($"{typeName}\t{NBooks}\t{timesSerialize.averageS:F4}\t{timesDeserialize.averageS:F3}\t{timesSerialize.serializedSize}\t{formatter.FileVersion}\t{GetNetCoreVersion() ?? System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}\t{GetSerializerDetails(formatter)}");
+            Console.WriteLine($"{typeName.PadRight(50, ' ')},{NBooks},{timesSerialize.averageS:F4},{timesDeserialize.averageS:F3},{timesSerialize.serializedSize.ToString().PadRight(15, ' ')},{formatter.FileVersion.PadRight(30, ' ')},{GetNetCoreVersion() ?? System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription},{GetSerializerDetails(formatter)}");
         }
 
         /// <summary>
@@ -111,11 +111,11 @@ namespace SerializerCore
                 throw new MissingMemberException($"The serializer {formatter.GetType().Name} has no SerializerTypeAttribute! Please add missing metadata!");
             }
             var str = description.ProjectHomeUrl;
-            string dataFormat = description.SerializerTypeDescription.HasFlag(SerializerTypes.Binary) ? "Binary" : "Text";
-            string subDataFormat = description.SerializerTypeDescription.HasFlag(SerializerTypes.Json) ? "Json" :
-                                  (description.SerializerTypeDescription.HasFlag(SerializerTypes.Xml) ? "Xml" : "");
-            string supportsVersioning = description.SerializerTypeDescription.HasFlag(SerializerTypes.SupportsVersioning) ? "Yes" : "No";
-            return $"{description.ProjectHomeUrl}\t{dataFormat}\t{subDataFormat}\t{supportsVersioning}";
+            string dataFormat = description.SerializerTypeDescription.HasFlag(SerializerTypes.Binary) ? ",Binary" : ",Text";
+            string subDataFormat = description.SerializerTypeDescription.HasFlag(SerializerTypes.Json) ? ",Json" :
+                                  (description.SerializerTypeDescription.HasFlag(SerializerTypes.Xml) ? ",Xml" : ",");
+            string supportsVersioning = description.SerializerTypeDescription.HasFlag(SerializerTypes.SupportsVersioning) ? ",Yes" : ",No";
+            return $"{dataFormat},{subDataFormat},{supportsVersioning}";
         }
 
         enum Format
@@ -130,11 +130,11 @@ namespace SerializerCore
             switch (format)
             {
                 case Format.Combined:
-                    return "Serializer\tObjects\t\"Time to serialize in s\"\t\"Time to deserialize in s\"\t\"Size in bytes\"\tFileVersion\tFramework\tProjectHome\tDataFormat\tFormatDetails\tSupports Versioning";
+                    return "Serializer,Objects,\"Time to serialize in s\",\"Time to deserialize in s\",\"Size in bytes\",FileVersion,Framework,ProjectHome,DataFormat,FormatDetails,Supports Versioning";
                 case Format.Deserialize:
-                    return "Serializer\tObjects\t\"Time to deserialize in s\"\t\"Size in bytes\"\tFileVersion\tFramework\tProjectHome\tDataFormat\tFormatDetails\tSupports Versioning";
+                    return "Serializer,Objects,\"Time to deserialize in s\",\"Size in bytes\",FileVersion,Framework,ProjectHome,DataFormat,FormatDetails,Supports Versioning";
                 case Format.Serialize:
-                    return "Serializer\tObjects\t\"Time to serialize in s\"\t\"Size in bytes\"\tFileVersion\tFramework\tProjectHome\tDataFormat\tFormatDetails\tSupports Versioning";
+                    return "Serializer,Objects,\"Time to serialize in s\",\"Size in bytes\",FileVersion,Framework,ProjectHome,DataFormat,FormatDetails,Supports Versioning";
                 default:
                     throw new NotSupportedException($"Output format {format} is not supported.");
             }

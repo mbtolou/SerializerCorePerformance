@@ -81,7 +81,7 @@ namespace SerializerCore
                 new NopSerializer<BookShelf>(Data, null),
                 // Apex Serializer works only on .NET Core 3.0! .NET Core 3.1 and 5.0 break with some internal FileNotFoundExeptions which breaks serialization/deserialization
                 // InvalidOperationException: Type SerializerCore.TypesToSerialize.BookShelf was encountered during deserialization but was not marked as serializable. Use Binary.MarkSerializable before creating any serializers if this type is intended to be serialized.
-                // new ApexSerializer<BookShelf>(Data, TouchAndVerify),
+                new ApexSerializer<BookShelf>(Data, TouchAndVerify),
 
                 new Ceras<BookShelf>(Data, TouchAndVerify),
 
@@ -106,10 +106,6 @@ namespace SerializerCore
                 new SlimSerializer<BookShelf>(Data, TouchAndVerify),
 
 
-#if NET472
-                // ZeroFormatter crashes on .NET Core 3 during serialize with: System.BadImageFormatException: 'Bad IL format.'
-                // new ZeroFormatter<ZeroFormatterBookShelf>(DataZeroFormatter, Touch),
-#endif
                 // new ServiceStack<BookShelf>(Data, TouchAndVerify),
                 new FastJson<BookShelf>(Data, TouchAndVerify),
                 //new DataContractIndented<BookShelf>(Data, TouchBookShelf),
@@ -132,17 +128,11 @@ namespace SerializerCore
                 new Ceras<BookShelf2>(Data2, null),
                 new Ceras<LargeBookShelf>(DataLarge, null),
 
-#if NETCOREAPP3_0
                 new ApexSerializer<BookShelf>(Data, null),
                 new ApexSerializer<BookShelf1>(Data1, null),
                 new ApexSerializer<BookShelf2>(Data2, null),
                 new ApexSerializer<LargeBookShelf>(DataLarge, null),
-#endif
 
-                // new ServiceStack<BookShelf>(Data, null),
-                // new ServiceStack<BookShelf1>(Data1, null),
-                // new ServiceStack<BookShelf2>(Data2, null),
-                // new ServiceStack<LargeBookShelf>(DataLarge, null),
 
                 new Bois<BookShelf>(Data, null),
                 new Bois<BookShelf1>(Data1, null),
@@ -158,14 +148,6 @@ namespace SerializerCore
                 new GroBuf<BookShelf1>(Data1, null),
                 new GroBuf<BookShelf2>(Data2, null),
                 new GroBuf<LargeBookShelf>(DataLarge, null),
-
-#if NET472
-                // ZeroFormatter crashes on .NET Core 3 during serialize with: System.BadImageFormatException: 'Bad IL format.'
-                //new ZeroFormatter<ZeroFormatterBookShelf>(DataZeroFormatter, null),
-                //new ZeroFormatter<ZeroFormatterBookShelf1>(DataZeroFormatter1, null),
-                //new ZeroFormatter<ZeroFormatterBookShelf2>(DataZeroFormatter2, null),
-                //new ZeroFormatter<ZeroFormatterLargeBookShelf>(DataZeroFormatterLarge, null),
-#endif
 
 
                 // Hyperion does not work on .NET Core 3.0  https://github.com/akkadotnet/Hyperion/issues/111
@@ -194,25 +176,25 @@ namespace SerializerCore
                 new FastJson<BookShelf2>(Data2, null),
                 new FastJson<LargeBookShelf>(DataLarge, null),
 
-                // new Jil<BookShelf>(Data, null),
-                // new Jil<BookShelf1>(Data1, null),
-                // new Jil<BookShelf2>(Data2, null),
-                // new Jil<LargeBookShelf>(DataLarge, null),
+                new Jil<BookShelf>(Data, null),
+                new Jil<BookShelf1>(Data1, null),
+                new Jil<BookShelf2>(Data2, null),
+                new Jil<LargeBookShelf>(DataLarge, null),
 
-                // new DataContract<BookShelf>(Data, null),
-                // new DataContract<BookShelf1>(Data1, null),
-                // new DataContract<BookShelf2>(Data2, null),
-                // new DataContract<LargeBookShelf>(DataLarge, null),
+                new DataContract<BookShelf>(Data, null),
+                new DataContract<BookShelf1>(Data1, null),
+                new DataContract<BookShelf2>(Data2, null),
+                new DataContract<LargeBookShelf>(DataLarge, null),
 
-                // new XmlSerializer<BookShelf>(Data, null),
-                // new XmlSerializer<BookShelf1>(Data1, null),
-                // new XmlSerializer<BookShelf2>(Data2, null),
-                // new XmlSerializer<LargeBookShelf>(DataLarge, null),
+                new XmlSerializer<BookShelf>(Data, null),
+                new XmlSerializer<BookShelf1>(Data1, null),
+                new XmlSerializer<BookShelf2>(Data2, null),
+                new XmlSerializer<LargeBookShelf>(DataLarge, null),
 
-                // new JsonNet<BookShelf>(Data, null),
-                // new JsonNet<BookShelf1>(Data1, null),
-                // new JsonNet<BookShelf2>(Data2, null),
-                // new JsonNet<LargeBookShelf>(DataLarge, null),
+                new JsonNet<BookShelf>(Data, null),
+                new JsonNet<BookShelf1>(Data1, null),
+                new JsonNet<BookShelf2>(Data2, null),
+                new JsonNet<LargeBookShelf>(DataLarge, null),
 
                 new Protobuf_net<BookShelf>(Data, null),
                 new Protobuf_net<BookShelf1>(Data1, null),
@@ -241,9 +223,7 @@ namespace SerializerCore
             {
                  // Apex Serializer works only on .NET Core 3.0 3.1 and 5.0 break with some internal FileNotFoundExeptions which apparently break serialization/deserialization
                 // InvalidOperationException: Type SerializerCore.TypesToSerialize.BookShelf was encountered during deserialization but was not marked as serializable. Use Binary.MarkSerializable before creating any serializers if this type is intended to be serialized.
-#if NETCOREAPP3_0
                 new ApexSerializer<ReferenceBookShelf>(DataReferenceBookShelf, null),
-#endif
                 // FlatBuffer does not support object references
                 new MessagePackSharp<ReferenceBookShelf>(DataReferenceBookShelf, null),
                 new GroBuf<ReferenceBookShelf>(DataReferenceBookShelf, null),
@@ -257,18 +237,13 @@ namespace SerializerCore
                 //new Jil<ReferenceBookShelf>(DataReferenceBookShelf, null),  // Jil does not support a dictionary with DateTime as key
                 new Protobuf_net<ReferenceBookShelf>(DataReferenceBookShelf, null),  // Reference tracking in protobuf can be enabled via attributes in the types!
                 new SlimSerializer<ReferenceBookShelf>(DataReferenceBookShelf, null),
-#if NET472
-                // ZeroFormatter crashes on .NET Core 3 during serialize with: System.BadImageFormatException: 'Bad IL format.'
-                //new ZeroFormatter<ReferenceBookShelf>(DataReferenceBookShelf, null),
-#endif
-                // new ServiceStack<ReferenceBookShelf>(DataReferenceBookShelf, null),
-                // new FastJson<ReferenceBookShelf>(DataReferenceBookShelf, null), // DateTime strings are not round trip capable because FastJSON keeps the time only until ms but the rest is not serialized!
+
+                new FastJson<ReferenceBookShelf>(DataReferenceBookShelf, null), // DateTime strings are not round trip capable because FastJSON keeps the time only until ms but the rest is not serialized!
                 new DataContractIndented<ReferenceBookShelf>(DataReferenceBookShelf, null, refTracking:TestReferenceTracking),
                 new DataContractBinaryXml<ReferenceBookShelf>(DataReferenceBookShelf, null, refTracking:TestReferenceTracking),
                 new DataContract<ReferenceBookShelf>(DataReferenceBookShelf, null, refTracking:TestReferenceTracking),
-                // new XmlSerializer<ReferenceBookShelf>(DataReferenceBookShelf, null),  // XmlSerializer does not support Dictionaries https://stackoverflow.com/questions/2911514/why-doesnt-xmlserializer-support-dictionary
+                new XmlSerializer<ReferenceBookShelf>(DataReferenceBookShelf, null),  // XmlSerializer does not support Dictionaries https://stackoverflow.com/questions/2911514/why-doesnt-xmlserializer-support-dictionary
                 new JsonNet<ReferenceBookShelf>(DataReferenceBookShelf, null, refTracking:TestReferenceTracking),
-                // new MsgPack_Cli<ReferenceBookShelf>(DataReferenceBookShelf, null),
                 new BinaryFormatter<ReferenceBookShelf>(DataReferenceBookShelf, null),
                 new Utf8JsonSerializer<ReferenceBookShelf>(DataReferenceBookShelf, null)
             };

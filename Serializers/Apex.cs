@@ -1,5 +1,4 @@
-﻿#if NETCOREAPP3_0
-using Apex.Serialization;
+﻿using Apex.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,9 +15,15 @@ namespace SerializerCore.Serializers
                     SerializerTypes.Binary)]
     public sealed class ApexSerializer<T> : TestBase<T, IBinary> where T : class
     {
-        public ApexSerializer(Func<int, T> testData, Action<T,int,int> touchAndVerify) : base(testData, touchAndVerify)
+        private readonly IBinary binary = Binary.Create(new Settings { UseSerializedVersionId = false }.MarkSerializable(x => true));
+        private readonly IBinary binaryGraph = Binary.Create(new Settings { SerializationMode = Mode.Graph, UseSerializedVersionId = false }.MarkSerializable(x => true));
+        private readonly IBinary binaryWithVersionIds = Binary.Create(new Settings { UseSerializedVersionId = true }.MarkSerializable(x => true));
+        private readonly IBinary binaryWithoutFlatten = Binary.Create(new Settings { UseSerializedVersionId = false, FlattenClassHierarchy = false }.MarkSerializable(x => true));
+
+        public ApexSerializer(Func<int, T> testData, Action<T, int, int> touchAndVerify) : base(testData, touchAndVerify)
         {
-            FormatterFactory = () => Binary.Create(new Settings { SerializationMode = RefTracking ? Mode.Graph : Mode.Tree });
+            // FormatterFactory = () => Binary.Create(new Settings { SerializationMode = Mode.Graph, UseSerializedVersionId = false }.MarkSerializable(x => true));
+            FormatterFactory = () => binaryWithoutFlatten;
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -34,4 +39,3 @@ namespace SerializerCore.Serializers
         }
     }
 }
-#endif

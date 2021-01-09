@@ -9,9 +9,8 @@ namespace SerializerCore.Serializers
     /// Not active anymore since it does not work with .NET Core 3
     /// https://github.com/akkadotnet/Hyperion/
     /// </summary>
-    [SerializerType("https://github.com/EgorBo/Wire based on https://github.com/lemire/Wire",
-                    SerializerTypes.Binary)]
-    [IgnoreSerializeTimeAttribute("Wire is used for serialize hence the serialize time is ignored.")]
+    [SerializerType("",SerializerTypes.Binary)]
+    // [IgnoreSerializeTimeAttribute("Wire is used for serialize hence the serialize time is ignored.")]
     class Wire<T> : TestBase<T, Serializer> where T : class
     {
         public Wire(Func<int, T> testData, Action<T, int, int> touchAndVerify, bool refTracking = false) : base(testData, touchAndVerify)

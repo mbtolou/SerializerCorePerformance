@@ -1,0 +1,25 @@
+Serializer,Objects,Time to serialize in s,Time to deserialize in s,Size in bytes,FileVersion,Framework,ProjectHome,DataFormat,FormatDetails,Supports Versioning
+SystemTextJson                                    ,300000,0.0362,0.15,900011,4.700.20.41903                ,.NET Core 3.1.8,,Text,Json,Yes
+Bois_LZ4                                          ,300000,0.0941,0.127,1547047,3.1.0.0                       ,.NET Core 3.1.8,,Binary,,No
+NopSerializer                                     ,300000,0,0.045,3188895,1.0.0.0                       ,.NET Core 3.1.8,,Binary,,No
+Bois                                              ,300000,0.0398,0.122,4980646,3.1.0.0                       ,.NET Core 3.1.8,,Binary,,No
+Ceras                                             ,300000,0.1119,0.172,5280646,4.1.7.0                       ,.NET Core 3.1.8,,Binary,,Yes
+MessagePackSharp                                  ,300000,0.0455,0.128,5757449,2.2.85.21899                  ,.NET Core 3.1.8,,Binary,,Yes
+Protobuf_net                                      ,300000,0.0946,0.1,6172407,3.0.73.29921                  ,.NET Core 3.1.8,,Binary,,Yes
+Hyperion                                          ,300000,0.0583,0.119,7089161,0.9.16.0                      ,.NET Core 3.1.8,,Binary,,No
+Wire                                              ,300000,0.0917,0.121,7089161,1.0.0.0                       ,.NET Core 3.1.8,,Binary,,No
+SlimSerializer                                    ,300000,0.3918,0.285,8272474,1.5.18.0                      ,.NET Core 3.1.8,,Binary,,No
+FlatBuffer                                        ,300000,0.006,0.006,11999672,1.12.0.0                      ,.NET Core 3.1.8,,Binary,,Yes
+ApexSerializer                                    ,300000,0.0655,0.054,12977861,2.0.1.0                       ,.NET Core 3.1.8,,Binary,,No
+DataContractBinaryXml                             ,300000,0.1688,0.553,13923401,4.700.20.41903                ,.NET Core 3.1.8,,Binary,Xml,Yes
+SystemTextJson                                    ,300000,0.13,0.362,14777801,4.700.20.41903                ,.NET Core 3.1.8,,Text,Json,Yes
+SimdJsonSharpSerializer                           ,300000,0,0.112,14777801,1.5.0.0                       ,.NET Core 3.1.8,,Text,Json,No
+SpanJson                                          ,300000,0.0482,0.127,14777801,3.1.0.0                       ,.NET Core 3.1.8,,Text,Json,No
+Utf8JsonSerializer                                ,300000,0.0455,0.148,14777801,1.3.7                         ,.NET Core 3.1.8,,Text,Json,Yes
+Jil                                               ,300000,0.0543,0.184,14777801,2.17.0.0                      ,.NET Core 3.1.8,,Text,Json,Yes
+JsonNet                                           ,300000,0.2954,0.48,14777833,12.0.3.23909                  ,.NET Core 3.1.8,,Text,Json,Yes
+BinaryFormatter                                   ,300000,1.1322,1.699,14889610,4.700.20.41903                ,.NET Core 3.1.8,,Binary,,Yes
+FastJson                                          ,300000,0.3628,1.475,18378059,2.4.0.1                       ,.NET Core 3.1.8,,Text,Json,Yes
+DataContract                                      ,300000,0.1495,0.502,19277997,4.700.20.41903                ,.NET Core 3.1.8,,Text,Xml,Yes
+GroBuf                                            ,300000,0.0158,0.067,19577865,1.6.1.11252                   ,.NET Core 3.1.8,,Binary,,Yes
+XmlSerializer                                     ,300000,0.255,0.804,30377960,4.700.20.41903                ,.NET Core 3.1.8,,Text,Xml,Yes

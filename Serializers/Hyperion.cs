@@ -11,7 +11,7 @@ namespace SerializerCore.Serializers
     /// </summary>
     [SerializerType("https://github.com/EgorBo/Hypervision based on https://github.com/lemire/Hypervision",
                     SerializerTypes.Binary)]
-    [IgnoreSerializeTimeAttribute("Hypervision is used for serialize hence the serialize time is ignored.")]
+    // [IgnoreSerializeTimeAttribute("Hypervision is used for serialize hence the serialize time is ignored.")]
     class Hyperion<T> : TestBase<T, Serializer> where T : class
     {
         public Hyperion(Func<int, T> testData, Action<T, int, int> touchAndVerify, bool refTracking = false) : base(testData, touchAndVerify)
